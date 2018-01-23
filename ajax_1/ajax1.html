@@ -21,6 +21,11 @@
                 
                 xhr.open('GET', 'sample.txt', true);
 
+                    //Loader    
+                xhr.onprogress = function() {
+                    console.log('Readystate: ', xhr.readyState);
+                }
+                
                 xhr.onload = function() {
                     if(this.status == 200) {
                         document.getElementById('text')
@@ -32,10 +37,7 @@
                     }
                 }
 
-                //Loader    
-                xhr.onprogress = function() {
-                    console.log('Readystate: ', xhr.readyState);
-                }
+            
 
                 // xhr.onreadystatechange = function () {
                 //     if(this.readyState == 4 && this.readyState == 200) {
