@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UFT-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Comptaible" content="ie=edge">
+
+        <title>Ajax - Text File</title>
+
+    </head>
+    <body>
+        <button id="button">Get Text File</button>
+        <div id="text"></div>
+
+        <script>
+            document.getElementById('button')
+            .addEventListener('click', loadtext);
+
+            function loadtext() {
+                var xhr = new XMLHttpRequest();
+                
+                xhr.open('GET', 'sample.txt', true);
+
+                xhr.onload = function() {
+                    if(this.status == 200) {
+                        document.getElementById('text')
+                        .innerHTML = this.responseText;                       
+                    }
+                    else if(this.status == 404) {
+                        Console.log( document.getElementById('text')
+                        .innerHTML = 'Not found');
+                    }
+                }
+
+                //Loader    
+                xhr.onprogress = function() {
+                    console.log('Readystate: ', xhr.readyState);
+                }
+
+                // xhr.onreadystatechange = function () {
+                //     if(this.readyState == 4 && this.readyState == 200) {
+                //         document.getElementById('text')
+                //         .innerHTML = this.responseText;
+                //     }
+                // }
+
+                xhr.onerror = function() {
+                    console.log('Request error');
+                }
+
+                xhr.send();
+            }
+        </script>
+
+    </body>
+</html>
